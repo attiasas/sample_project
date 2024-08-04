@@ -1,9 +1,9 @@
 name: "Frogbot Scan Repository"
 on:
   workflow_dispatch:
-  schedule:
+  #schedule:
     # The repository will be scanned once a day at 00:00 GMT.
-    - cron: "0 0 * * *"
+    #- cron: "0 0 * * *"
 permissions:
   contents: write
   pull-requests: write
@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         # The repository scanning will be triggered periodically on the following branches.
-        branch: ["master"]
+        branch: ["main"]
     steps:
       - uses: jfrog/frogbot@v2
         env:
