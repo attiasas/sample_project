@@ -53,10 +53,9 @@ def grep_processes():
     return jsonify({"success": True, "names": names})
 
 
-@bp.route("/deserialized_descr", methods=["POST"])
-def deserialized_descr():
-    pickled = request.form.get('pickled')
-    data = base64.urlsafe_b64decode(pickled)
-    # vulnerability: Insecure Deserialization
-    deserialized = pickle.loads(data)
-    return jsonify({"success": True, "description": str(deserialized)})
+@bp.route("/deserialize_module", methods=["POST"])
+def deserialize_module():
+    serialized_var_data = request.form.get('module')
+    data = base64.urlsafe_b64decode(serialized_var_data)
+    var = pickle.loads(data)
+    return jsonify({"success": True, "var_data": str(var)})
